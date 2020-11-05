@@ -2,25 +2,20 @@ import './App.css';
 import React, { Component } from 'react'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-import Users from './components/Users'
-import User from './components/User'
+import Products from './components/Products';
+import categoriesData from './Data/Categories'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {name: 'Name Abc'};
-  }
   render(){
+    console.log(categoriesData);
     return (
       <Router>
-        <div className="container">
-          <h1 className="text-center">Hello World</h1>
+        <div className="container-fluid">
+          <h1 className="text-center">Welcome to e-Shop</h1>
           <hr/>
             <Route exact path="/" render={props =>{
-              return (<Users />)
+              return (<Products categories={categoriesData} />)
             }} />
-            <Route path="/user" component={User}/>
         </div>
       </Router>
     );
