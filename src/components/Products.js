@@ -45,9 +45,9 @@ class Products extends Component {
   render() {
     const categories = this.props.categories.data;
     return (
-      <div className="d-flex" id="wrapper">
+      <div className="row mb-0">
         <Categories data={categories} handler={this.changeCategory}/>
-        <div id="page-content-wrapper">
+        <div className="col p-3">
           {!this.state.products.loading && 
             <div className="row">{this.state.products.data.map((product) => {
               return <ProductCard product={product} key={product.id} />

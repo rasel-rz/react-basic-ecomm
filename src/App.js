@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Products from './components/Products';
 import categoriesData from './Data/Categories'
+import Navbar from './common/Navbar';
 
 class App extends Component {
   render(){
@@ -11,8 +12,7 @@ class App extends Component {
     return (
       <Router>
         <div className="container-fluid">
-          <h1 className="text-center">Welcome to e-Shop</h1>
-          <hr/>
+        <Navbar />
             <Route exact path="/" render={props =>{
               return (<Products categories={categoriesData} />)
             }} />

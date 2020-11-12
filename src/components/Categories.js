@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { FaSistrix } from "react-icons/fa";
 
 
 class Categories extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       searchString: '',
@@ -11,7 +12,7 @@ class Categories extends Component {
   }
 
   searchInputChange = (e) => {
-    this.setState({searchString: e.target.value});
+    this.setState({ searchString: e.target.value });
   }
 
   onSearchEnter = (e) => {
@@ -21,25 +22,37 @@ class Categories extends Component {
   }
 
   changeCategory = (category, searchString) => {
-    this.setState({category: category});
+    this.setState({ category: category });
     this.props.handler(category, searchString);
   }
 
-  render(){
+  render() {
     const categories = this.props.data;
     return (
-      <div>
-        <div className="bg-light border-right" id="sidebar-wrapper">
-          <div className="sidebar-heading">
-            <input type="text" placeholder="Search" onKeyUp={this.onSearchEnter} onChange={this.searchInputChange} value={this.props.searchString} />
+      <div className="sidebar-container d-none d-sm-block">
+        <div className="sidebar" id="sidebar">
+          <div className="overflow-auto">
+            <div className="list-group list-group-flush overflow-auto">
+              <div className="list-group-item pt-3">
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="basic-addon1"><FaSistrix /></span>
+                  </div>
+                  <input type="text" className="form-control" placeholder="Search" onKeyUp={this.onSearchEnter} onChange={this.searchInputChange} value={this.props.searchString} />
+                </div>
+              </div>
+              {categories.map(category => {
+                return (
+                  <div onClick={this.changeCategory.bind(this, category, this.state.searchString)} key={category.id} className="list-group-item list-group-item-action">{category.name}</div>
+                )
+              })}
+            </div>
           </div>
-          <div className="list-group list-group-flush">
-            {categories.map(category => {
-              return (
-                <div onClick={this.changeCategory.bind(this, category, this.state.searchString)} key={category.id} className="list-group-item list-group-item-action bg-light pointer">{category.name}</div>
-              )
-            })}
-          </div>
+
+        </div>
+        <div className="footer pt-2 bg-dark text-light text-center">
+            Copyright &copy; 2020 <br />
+            All rights reserved.
         </div>
       </div>
     )
