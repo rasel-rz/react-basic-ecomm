@@ -19,7 +19,7 @@
 }
 
 /* Apply row margin automatically */
-.row {
+.row:not(:last-child) {
   margin-bottom: 1rem;
 }
 
@@ -28,21 +28,18 @@
   position: relative;
 }
 #sidebar.sidebar {
-  height: calc(100vh - 112px); /* 56px Navbar Height */
+  height: calc(100vh - 88px); /* 56px Navbar Height */
   overflow-y: auto;
   overflow-x: hidden;
   width: 300px;
+  margin-left: 15px;
 }
-.sidebar-container .footer {
-  position: absolute;
-  bottom: -56px;
-  margin: 5px 0 0 0;
-  height: 56px;
-  width: 300px;
-  font-size: 12px !important;
-  text-align: center;
+.content-container .content {
+  height: calc(100vh - 88px); /* 56px Navbar Height */
+  overflow-y: auto;
+  overflow-x: hidden;
+  align-content: flex-start;
 }
-
 /* Enable dotted text */
 .single-line {
   overflow: hidden;

@@ -16,9 +16,9 @@ class Products extends Component {
 
   getProducts = (categoryId, searchString) => {
     this.setState({ products: { loading: true } });
-    categoryId = categoryId? categoryId: '';
-    searchString = searchString? searchString: '';
-    const url = `https://www.landknock.net/api/v2.0.0/public-products?category_id=${categoryId}&search=${searchString}`
+    categoryId = categoryId ? categoryId : '';
+    searchString = searchString ? searchString : '';
+    const url = `http://localhost:5000/api/products?category_id=${categoryId}&search=${searchString}`
     console.log(url);
     axios.get(url)
       .then((response) => {
@@ -43,18 +43,31 @@ class Products extends Component {
   }
 
   render() {
-    const categories = this.props.categories.data;
+    const categories = this.props.categories;
+    const products = this.state.products;
     return (
       <div className="row mb-0">
-        <Categories data={categories} handler={this.changeCategory}/>
-        <div className="col p-3">
-          {!this.state.products.loading && 
-            <div className="row">{this.state.products.data.map((product) => {
+        <Categories data={categories} handler={this.changeCategory} />
+        <div className="col m-3 content-container">
+          {!products.loading && products.data.length > 0 &&
+            <div className="row content">{products.data.map((product) => {
               return <ProductCard product={product} key={product.id} />
             })}</div>
           }
-          {this.state.products.loading &&
-            <div>Loading...</div>
+          {products.loading &&
+            <div className="d-flex justify-content-center content">
+              <div className="spinner-border m-auto" style={{ width: '3rem', height: '3rem', }}>
+                <span className="sr-only">Loading...</span>
+              </div>
+            </div>
+          }
+
+          {!products.loading && products.data.length < 1 &&
+            <div className="d-flex justify-content-center content">
+              <div className="m-auto">
+                No products found. Please recheck your search query.
+              </div>
+            </div>
           }
         </div>
       </div>

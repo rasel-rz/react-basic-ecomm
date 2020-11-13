@@ -41,18 +41,14 @@ class Categories extends Component {
                   <input type="text" className="form-control" placeholder="Search" onKeyUp={this.onSearchEnter} onChange={this.searchInputChange} value={this.props.searchString} />
                 </div>
               </div>
-              {categories.map(category => {
+              {!categories.loading && categories.data.map(category => {
                 return (
-                  <div onClick={this.changeCategory.bind(this, category, this.state.searchString)} key={category.id} className="list-group-item list-group-item-action">{category.name}</div>
+                  <div onClick={this.changeCategory.bind(this, category, this.state.searchString)} key={category.id} 
+                    className={"list-group-item list-group-item-action" + (category.id == this.state.category.id ? " list-group-item-secondary":"")}>{category.name}</div>
                 )
               })}
             </div>
           </div>
-
-        </div>
-        <div className="footer pt-2 bg-dark text-light text-center">
-            Copyright &copy; 2020 <br />
-            All rights reserved.
         </div>
       </div>
     )
