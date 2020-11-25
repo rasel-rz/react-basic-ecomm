@@ -44,7 +44,7 @@ class Categories extends Component {
               {!categories.loading && categories.data.map(category => {
                 return (
                   <div onClick={this.changeCategory.bind(this, category, this.state.searchString)} key={category.id} 
-                    className={"list-group-item list-group-item-action" + (category.id == this.state.category.id ? " list-group-item-secondary":"")}>{category.name}</div>
+                    className={"list-group-item list-group-item-action" + (category.id === this.state.category.id ? " list-group-item-secondary":"")}>{category.name}</div>
                 )
               })}
             </div>
