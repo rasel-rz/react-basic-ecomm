@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-/* import SocketLive from './SocketLive'; */
-
-export default class Footer extends Component {
-    render() {
-        return (
-            <div className="fixed-bottom ml-3 mr-3 bg-dark text-light row">
-                <div className="col text-center">Copyright &copy; All rights reserved by Rasel.</div>
-                {/* <div className="col text-right"><SocketLive/></div> */}
-            </div>
-        )
-    }
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { increment } from '../actions';
+export default function Footer() {
+    const counter = useSelector(state => state.counter);
+    const dispatch = useDispatch();
+    return (
+        <div className="fixed-bottom ml-3 mr-3 bg-dark text-light row">
+            <div className="col text-center" onClick={() => dispatch(increment())}>Copyright &copy; {counter} All rights reserved by Rasel.</div>
+        </div>
+    )
 }

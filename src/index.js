@@ -4,11 +4,23 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css'
 import reportWebVitals from './reportWebVitals';
+import { applyMiddleware, createStore, compose } from 'redux';
+import rootReducers from './reducers';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+
+const store = createStore(
+  rootReducers,
+  compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
+)
 
 ReactDOM.render(
-  <React.Fragment>
+  <Provider store={store}>
     <App />
-  </React.Fragment>,
+  </Provider>,
   document.getElementById('root')
 );
 

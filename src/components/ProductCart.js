@@ -11,7 +11,7 @@ export default class ProductCart extends Component {
 
     updateCart = (isIncrement) => {
         if (isIncrement) { this.setState({ cartCount: this.state.cartCount + 1 }) }
-        if (!isIncrement && this.state.cartCount != 0) { this.setState({ cartCount: this.state.cartCount - 1 }) }
+        if (!isIncrement && this.state.cartCount !== 0) { this.setState({ cartCount: this.state.cartCount - 1 }) }
     }
 
     render() {
